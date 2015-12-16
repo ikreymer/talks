@@ -1,3 +1,3 @@
 ## Talk Slides
 
-using reveal.js
+http://ikreymer.github.io/talk-20151215/
