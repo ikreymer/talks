@@ -68,7 +68,7 @@
                     <h2>About Me</h2>
                     <ul>
                         <li class="fragment">Worked at Internet Archive on their Wayback Machine</li>
-                        <li class="fragment">Specialize in <a href="https://github.com/ikreymer/pywb">web archive replay tools</a></li>
+                        <li class="fragment">Build <a href="https://github.com/ikreymer/pywb">web archive replay tools</a></li>
                         <li class="fragment">Created <a href="http://index.commoncrawl.org/">Url Index</a> for CommonCrawl</li>
                         <li class="fragment">Currently working on the <a href="https://webrecorder.io/">Webrecorder</a> project</li>
                         <li class="fragment">at <a href="https://rhizome.org/">Rhizome.org</a> -- a digital art and preservation org.</li>
@@ -101,7 +101,8 @@
 
                 <section id="ia">
                     <h2><a href="https://web.archive.org/web/">Wayback Machine</a></h2>
-                    <p>Crawling since 1996, public access since 2001, created by Alexa and Internet Archive</p>
+                    <p>Crawling since 1996, public access since 2001</p>
+                    <p> created by Alexa and Internet Archive</p>
                     <p class="fragment">What are the components?</p>
                     <ul>
                         <li class="fragment">Crawler (mostly <a href="https://github.com/internetarchive/heritrix3">Heritrix</a>) preserving HTTP traffic to WARC files</li>
@@ -126,7 +127,8 @@
 
                 <section id="commoncrawl">
                     <h2><a href="https://commoncrawl.org/">CommonCrawl</a></h2>
-                    <p>Crawling HTML content for analysis and making it available for the public, since 2008</p>
+                    <p>Crawling HTML content primarily for analysis</p>
+                    <p>Publicly available, since 2008</p>
                     <p class="fragment">What does it provide?</p>
                     <ul class="fragment">
                         <li>Crawling via <a href="http://nutch.apache.org/">Apache Nutch</a> crawler into WARC files</li>
@@ -264,7 +266,7 @@ WARC-Refers-To-Date: 2013-07-02T19:54:02Z</p>
                 <section id="warclimits">
                     <h2>Limitations of the WARC Format</h2>
                     <ul>
-                        <li class="fragment">No built-in url or record index!</li>
+                        <li class="fragment">No url or record index in the spec!</li>
                         <li class="fragment">Not easiely splittable (chunked gzip)</li>
                         <li class="fragment">Need to build external url index or read linearly</li>
                     </ul>
@@ -276,15 +278,15 @@ WARC-Refers-To-Date: 2013-07-02T19:54:02Z</p>
                         <li class="fragment">Plain-text index, developed at IA many years ago</li>
                         <li class="fragment">Space-delimited, alpha sorted text index</li>
                         <li class="fragment">De-facto standard, but has changed over the years</li>
-                        <li class="fragment"><a href="http://iipc.github.io/warc-specifications/specifications/cdx-format/cdx-2015/">CDX Format Notes</a></li>
                         <li class="fragment">Supported by web archive replay tools.</li>
+                        <li class="fragment"><a href="http://iipc.github.io/warc-specifications/specifications/cdx-format/cdx-2015/">CDX Format Notes</a></li>
                     </ul>
                 </section>
 
                 <section id="cdx2">
                     <h2>CDX Format (Example)</h2>
                     <ul>
-                        <li class="fragment">Sample CDX Line (11 field)</li>
+                        <li class="fragment">Sample CDX Line (11 fields)</li>
                         <pre class="fragment">
                         <p data-trim style="font-size: smaller; max-width: 1000px">
 com,example)/?example=1 20140103030321 http://example.com?example=1 text/html 200 B2LTWWPUOYAH7UIPQ7ZUPQ4VMBSVC36A - - 1043 333 example.warc.gz</p></pre>
