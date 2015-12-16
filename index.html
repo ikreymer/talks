@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>reveal.js – The HTML Presentation Framework</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <style>
+            .inline-code {
+                font-family: monospace !important;
+                color: gray !important;
+                font-size: smaller !important;
+            }
+            pre.fragment {
+                line-height: 0.4em !important;
+            }
+            pre.fragment p {
+                margin: 0px !important;
+                padding: 0px !important;
+            }
+        </style>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section data-markdown>
+                    <script type="text/template">
+## Archiving Data Big and Small
+
+#### Ilya Kreymer
+
+#### 12/15/2015
+                    </script>
+                </section>
+                <section id="about">
+                    <h2>About Me</h2>
+                    <ul>
+                        <li class="fragment">Worked at Internet Archive on their Wayback Machine</li>
+                        <li class="fragment">Specialize in <a href="https://github.com/ikreymer/pywb">web archive replay tools</a></li>
+                        <li class="fragment">Created <a href="http://index.commoncrawl.org/">Url Index</a> for CommonCrawl</li>
+                        <li class="fragment">Currently working on the <a href="https://webrecorder.io/">Webrecorder</a> project</li>
+                        <li class="fragment">at <a href="https://rhizome.org/">Rhizome.org</a> -- a digital art and preservation org.</li>
+                        <li class="fragment">Also recently launched <a href="http://oldweb.today/">oldweb.today</a></li>
+                    </ul>
+                </section>
+                
+                <section id="whatis">
+                    <h2>What is Web Archiving</h2>
+                    <ul>
+                        <li class="fragment">Web = HTTP traffic</li>
+                        <li class="fragment">Archiving = Preserving at high-fidelity, saving it all</li>
+                        <br/>
+                        <li class="fragment">Different from Scraping, Extraction</li>
+                        <li class="fragment">'Lossless' preservation, HTTP headers + full HTTP content</li>
+                    </ul>
+                </section>
+                <section id="why">
+                    <h2>Why Web Archive</h2>
+                    <div class="fragment">
+                        <img src="./images/disappear.jpg" style="width: 50%; height: 50%"/>
+                        <div style="font-size: 24px; line-height: 0.25em">Source: <a href="http://anjackson.net/2015/04/27/what-have-we-saved-iipc-ga-2015/">Ten years of the UK web archive: what have we saved?</a></span>
+                    </div>
+                    <p class="fragment">Web content changes and disappears over time</p>
+                </section>
+
+                <section id="who">
+                    <h2>Who is Web Archiving?</h2>
+                </section>
+
+                <section id="ia">
+                    <h2><a href="https://web.archive.org/web/">Wayback Machine</a></h2>
+                    <p>Crawling since 1996, public access since 2001, created by Alexa and Internet Archive</p>
+                    <p class="fragment">What are the components?</p>
+                    <ul>
+                        <li class="fragment">Crawler (mostly <a href="https://github.com/internetarchive/heritrix3">Heritrix</a>) preserving HTTP traffic to WARC files</li>
+                        <li class="fragment">An index of urls and their locations in WARC files.</li>
+                        <li class="fragment">A web app performing url rewriting, retrieval of content from WARC files.</li>
+                    </ul>
+                </section>
+
+                <section id="others">
+                    <h2>Other 'Wayback Machines'</h2>
+                    <p>Many other, lesser-known public web archives:</p>
+                    <ul class="fragment">
+                        <li><a href="https://swap.stanford.edu/">Stanford Libraries</a></li>
+                        <li><a href="http://www.loc.gov/webarchiving/">Library of Congress</a></li>
+                        <li><a href="http://www.webarchive.org.uk/ukwa/">UK Web Archives</a></li>
+                        <li><a href="http://arquivo.pt">Portuguese Web Archive</a></li>
+                        <li><a href="http://webenact.rhizome.org">Rhizome Webenact</a></li>
+                        <li>and many more...</li>    
+                    </ul>
+                    <p class="fragment"><a href="https://netpreserve.org/">International Internet Preservation Consortium</a> group</p>
+                </section>
+
+                <section id="commoncrawl">
+                    <h2><a href="https://commoncrawl.org/">CommonCrawl</a></h2>
+                    <p>Crawling HTML content for analysis and making it available for the public, since 2008</p>
+                    <p class="fragment">What does it provide?</p>
+                    <ul class="fragment">
+                        <li>Crawling via <a href="http://nutch.apache.org/">Apache Nutch</a> crawler into WARC files</li>
+                        <li>A url index of all urls and their locations in WARC files</li>  
+                        <li>Link and Metadata files provided (WAT)</li>
+                        <li>Extracted Text Files provided (WET).</li>  
+                    </ul>
+                </section>
+
+                <section id="webrecorder">
+                    <h2><a href="https://webrecorder.io/">Webrecorder</a></h2>
+                    <p>On-demand high fidelity web archiving</p>
+                    <p class="fragment">What does it do?</p>
+                    <ul>
+                        <li class="fragment">Records all traffic real time (to WARC) as user interacts with a web page.</li>
+                        <li class="fragment">'Replay' what has been recorded immediately.</li>
+                        <li class="fragment">Allows user to create public or private collections.</li>
+                        <li class="fragment">New project, a lot more coming soon!</li>
+                    </ul>
+                </section>
+
+                <section id="warcintro">
+                    <h3>These projects all share...</h3>
+                    <h3 class="fragment">... a common format</h3>
+                    <h2 class="fragment"><b style="color: gray">WARC</b> (<b style="color: gray">W</b>eb <b style="color: gray">ARC</b>hive)</h2>
+                </section>
+
+                <section id="warc1">
+                    <h2>The <b style="color: gray">WARC</b> (<b style="color: gray">W</b>eb <b style="color: gray">ARC</b>hive) Format</h2>
+                    <ul>
+                        <li class="fragment">Standardized, almost ubiqutous across web archiving initiatives.</li>
+                        <li class="fragment">Created in collaboration between Internet Archive, many national libraries</li>
+                        <ul class="fragment"><li class="fragment">Improvement on previous ARC format</li></ul>
+                        <li class="fragment">Designed to fully store HTTP request and response traffic, support deduplication, metadata, other arbitrary resources</li>
+                        <li class="fragment"><a href="http://bibnum.bnf.fr/WARC/">WARC 1.0 ISO Standard since 2005</a></li>
+                        <li class="fragment">WARC 1.1 revision in progress: <a href="https://github.com/iipc/warc-specifications">https://github.com/iipc/warc-specifications</a></li>
+                    </ul>
+                </section>
+                <section id="warcformat0">
+                    <h2>WARC Format: Details</h2>
+                    <ul>
+                        <li class="fragment">WARC file contains or more concatenated records</li>
+                        <li class="fragment">Each record can be (often is) gzip compressed</li>
+                        <li class="fragment"><b style="color: gray">.warc.gz</b> extension if records are gzip compressed</li>
+                        <li class="fragment">.<b style="color: gray">warc</b> extension if not gzip compressed</li>
+                        <li class="fragment">Entire file is NOT gzipped compressed</li>
+                    </ul>
+                </section>
+                <section id="warcformat1">
+                    <h2>WARC Format: Details</h2>
+                    <ul>
+                        <li class="fragment">Each record contains MIME-style WARC headers, followed by HTTP headers, followed by HTTP payload</li>
+                        <li class="fragment">HTTP response record, <span class="inline-code">WARC-Type: response</span>
+                            <pre class="fragment"><p data-trim style="font-size: smaller">
+WARC/1.0
+WARC-Type: response
+WARC-Date: 2013-12-04T16:47:32Z
+WARC-Record-ID: <urn:uuid:3619f5b0-d967-44be-8f24-762098d427c4>
+WARC-Payload-Digest: sha1:B2LTWWPUOYAH7UIPQ7ZUPQ4VMBSVC36A
+WARC-Target-URI: http://example.com/
+Content-Length: 200
+Content-Type: application/http; msgtype=response
+...
+
+HTTP/1.0 200 OK
+Server: nginx
+Content-Type: text/html
+Content-Length: 100
+...
+
+&lt;html&gt;
+...
+
+                        </p>
+                        </pre>
+                        </li>
+                    </ul>
+                </section>
+                <section id="warcformat2">
+                    <h2>WARC Format: Details</h2>
+                    <ul>
+                        <li class="fragment">HTTP Request record, <span class="inline-code">WARC-Type: request</span>
+                            <pre class="fragment"><p data-trim style="font-size: smaller">
+WARC/1.0
+WARC-Type: request
+WARC-Record-ID: <urn:uuid:c59f3330-b241-4fca-8513-d687cd85bcfb>
+WARC-Date: 2014-01-03T03:03:41Z
+Content-Length: 320
+Content-Type: application/http; msgtype=request
+...
+
+GET / HTTP/1.0
+...
+                        </p>
+                        </pre>
+                        </li>
+                        <li class="fragment">Supports any other HTTP verb, includes payload if necessary.</li>
+                    </ul>
+                </section>
+
+                <section id="warcformat3">
+                    <h2>WARC Format: Deduplication</h2>
+                    <ul>
+                        <li class="fragment"><span class="inline-code">revisit</span> record indicates no new content, a duplicate of another response record</li>
+                        <li class="fragment">Duplicate by exact digest of HTTP payload (not headers)</li>
+                        <li class="fragment">HTTP revisit record, <span class="inline-code">WARC-Type: revisit</span>
+                            <pre class="fragment"><p data-trim style="font-size: smaller">
+WARC/1.0
+WARC-Type: revisit
+WARC-Target-URI: http://www.duplicate.example.com/
+WARC-Record-ID: <urn:uuid:c59f3330-b241-4fca-8513-d687cd85bcfb>
+WARC-Date: 2013-12-05T16:47:32Z
+Content-Length: 0
+Content-Type: application/http; msgtype=response
+WARC-Payload-Digest: sha1:B2LTWWPUOYAH7UIPQ7ZUPQ4VMBSVC36A
+WARC-Refers-To-Target-URI: http://example.com/
+WARC-Refers-To-Date: 2013-07-02T19:54:02Z</p>
+                        </pre>
+                        </li>
+                        <li class="fragment">Need to find a <span class="inline-code">response</span> record stored elsewhere, by url and date with same digest (where?)</li>
+                    </ul>
+                </section>
+
+                <section id="warcformat4">
+                    <h2>WARC Format: Other Records</h2>
+                    <ul>
+                        <li><span class="inline-code">metadata</span> -- any metadata about an existing record</li>
+                        <li><span class="inline-code">resource</span> -- any other resource, non-HTTP data</li>
+                        <li><span class="inline-code">conversion</span> -- transformation of existing record</li>
+                        <li>WARCs can conform to an additional schema and contain not just raw HTTP traffic</li>
+                        <li class="fragment"><a href="http://blog.commoncrawl.org/2014/04/navigating-the-warc-file-format">WAT and WET Formats</a></li>
+                    </ul>
+                </section>
+
+                <section id="warclimits">
+                    <h2>Limitations of the WARC Format</h2>
+                    <ul>
+                        <li class="fragment">No built-in url or record index!</li>
+                        <li class="fragment">Not easiely splittable (chunked gzip)</li>
+                        <li class="fragment">Need to build external url index or read linearly</li>
+                    </ul>
+                </section>
+
+                <section id="cdx1">
+                    <h2><b style="color: gray">CDX</b> (<b style="color: gray">C</b>apture In<b style="color: gray">d</b>e<b style="color: gray">x</b>)</h2>
+                    <ul>
+                        <li class="fragment">Plain-text index, developed at IA many years ago</li>
+                        <li class="fragment">Space-delimited, alpha sorted text index</li>
+                        <li class="fragment">De-facto standard, but has changed over the years</li>
+                        <li class="fragment"><a href="http://iipc.github.io/warc-specifications/specifications/cdx-format/cdx-2015/">CDX Format Notes</a></li>
+                        <li class="fragment">Supported by web archive replay tools.</li>
+                    </ul>
+                </section>
+
+                <section id="cdx2">
+                    <h2>CDX Format (Example)</h2>
+                    <ul>
+                        <li class="fragment">Sample CDX Line (11 field)</li>
+                        <pre class="fragment">
+                        <p data-trim style="font-size: smaller; max-width: 1000px">
+com,example)/?example=1 20140103030321 http://example.com?example=1 text/html 200 B2LTWWPUOYAH7UIPQ7ZUPQ4VMBSVC36A - - 1043 333 example.warc.gz</p></pre>
+                        <li class="fragment">IA has billions of entries for the Wayback Machine</li>
+                        <li class="fragment">Binary search to lookup a url in Wayback</li>
+                        <li class="fragment">Improvement: Use Compression</li>
+                    </ul>
+                </section>
+
+                <section id="cdx2">
+                    <h2>Improvement: CDX Compression (ZipNum)</h2>
+                    <ul>
+                        <li class="fragment">gzip compress CDX lines (3000) at a time</li>
+                        <li class="fragment">Plain text, secondary index of compressed blocks</li>
+                        <li class="fragment">Bin-search secondary index, read compressed blocks</li>
+                        <li class="fragment">Compressed index can be split into shards</li>
+                        <li class="fragment">Format sometimes called (ZipNum) for 'zipped N number of lines'</li>
+                    </ul>
+                </section>
+
+                <section id="cdx3">
+                    <h2>Improvement: Use JSON</h2>
+                    <ul>
+                        <li class="fragment">CDX + JSON = CDXJ</li>
+                        <li class="fragment">Instead of space-delimited, use sorted key plus JSON line</li>
+                        <pre class="fragment">
+                        <p data-trim style="font-size: smaller; max-width: 1000px">
+com,example)/?example=1 20140103030321 {"url": "http://example.com?example=1", "digest": "B2LTWWPUOYAH7UIPQ7ZUPQ4VMBSVC36A", "length": "1043", "offset": "333", "filename": "example.warc.gz"}
+                        </p>
+                            </pre>
+                        <li class="fragment">Still alpha sortable, more flexible, optional fields</li>
+                        <li class="fragment">Required fields are WARC filename, offset and length of WARC record</li>
+                        <li class="fragment"><a href="http://ws-dl.blogspot.com/2015/09/2015-09-10-cdxj-object-resource-stream.html">More on CDXJ</a></li>
+                    </ul>
+                </section>
+                
+                <section id="cdx4">
+                    <h2>CDX API for Url Queries</h2>
+                    <ul>
+                        <li class="fragment">A CDX Server is an api endpoint which returns CDX data</li>
+                        <li class="fragment">CommonCrawl: <a href="http://index.commoncrawl.org/">index.commoncrawl.org</a></li>
+                        <li class="fragment">Ex: <pre><p data-trim style="font-size: smaller; max-width: 1000px">
+http://index.commoncrawl.org/CC-MAIN-2015-40-index?url=http://commoncrawl.org/*&nbsp;output=json
+</p></pre></li>
+                        <li class="fragment"><a href="https://github.com/ikreymer/pywb/wiki/CDX-Server-API">API Reference for CommonCrawl Index</a></li>
+                        <li class="fragment"><a href="https://github.com/iipc/openwayback/tree/master/wayback-cdx-server-webapp">API Reference for IA Wayback CDX</a></li>
+                        <li class="fragment"><a href="https://github.com/ikreymer/cdx-index-client">cdx-index-client</a> for bulk querying CDX Server API</li>
+                    </ul>
+                </section>
+                
+                <section id="cdx5">
+                    <h2>Creating CDX from WARCs</h2>
+                    <p class="fragment">Use <a href="https://github.com/ikreymer/pywb">pywb</a> tools cdx-indexer</p>
+                    <ol>
+                        <li class="fragment">pip install pywb</li>
+                        <li class="fragment">cdx-indexer -s -j warcfile.warc.gz > index.cdxj</li>
+                    </ol>
+                    <p class="fragment">pywb includes other options, automated indexing</p>
+                </section>
+                
+                <section id="cdx6">
+                    <h2>Creating CDX from WARCs at Scale</h2>
+                    <p class="fragment">Use <a href="https://github.com/ikreymer/pywb">webarchive-indexing</a> tools</p>
+                    <ul>
+                        <li class="fragment">Runs on hadoop, EMR or locally (mrjob)</li>
+                        <li class="fragment">Indexes WARCs, samples, creates compressed zipnum cluster of CDXJ</li>
+                        <li class="fragment">Used to created the CommonCrawl Index</li>
+                    </ul>
+                </section>
+                
+                <section id="warcbase">
+                    <h2>An Alternative: <a href="http://lintool.github.io/warcbase-docs/">Warcbase</a></h2>
+                    <ul>
+                        <li class="fragment">Built on top of Hadoop + HBase</li>
+                        <li class="fragment">Store WARC records into HBase</li>
+                        <li class="fragment">Indexing, access, provided by HBase. No need for CDX</li>
+                        <li class="fragment">New project, but gaining momentum for analysis</li>
+                        <li class="fragment">Downside: Requires HBase, Hadoop stack</li>
+                    </ul>
+                </section>
+
+                <section id="crawling">
+                    <h2>Taking a step back: How are WARCs Created</h2>
+                    <p class="fragment">Traditional approach: Crawling (very simplified)</p>
+                    <ul>
+                        <li class="fragment">Crawler starts with a list of seed urls</li>
+                        <li class="fragment">Crawler visits urls, creates WARC files from HTTP request/responses</li>
+                        <li class="fragment">Crawler discovers new urls, repeats following specific rules.</li>
+                        <li class="fragment">Crawl stops when some condition is met.</li>
+                    </ul>
+                </section>
+
+                <section id="crawling2">
+                    <h2>Crawling: How Effective</h2>
+                    <p class="fragment">This has worked very well with early web.</p>
+                    <p class="fragment">Still continues to work, but maybe not as well..</p>
+                    <p class="fragment">Still the best way to amass a large quantity of web data</p>
+                    <p class="fragment">But...</p>
+                </section>
+                
+                <section id="crawling3">
+                    <h2>Problems with traditional crawling:</h2>
+                    <ul>
+                        <li class="fragment">JAVASCRIPT</li>
+                        <li class="fragment">Contextualed pages: Your "twitter.com" is different than my "twitter.com"</li>
+                        <li class="fragment">Complex user interactions -- more JAVASCRIPT!</li>
+                        <li class="fragment">Crawler sees what the crawler sees, not necessarily what the user sees.</li>
+                    </ul>
+                </section>
+                
+                
+                <section id="crawling4">
+                    <h2>Symmetrical Web Archiving</h2>
+                    <ul>
+                        <li class="fragment">Record content the same as it is accessed.</li>
+                        <li class="fragment">If a user views the content through browser, why not archive through browser also?</li>
+                        <li class="fragment"><a href="https://webrecorder.io/">Webrecorder</a> does exactly this!</li>
+                        <li class="fragment">Writes WARCs, indexes WARCs and replays WARCs in real time</li>
+                        <li class="fragment">Small Data -- "Quality over quantity"</li>
+                    </ul>
+                </section>
+                
+                <section id="urlrewrite">
+                    <h2>Url Rewriting</h2>
+                    <ul>
+                        <li class="fragment">Access archived urls from a different domain by transforming urls.</li>
+                        <li class="fragment"><b class="inline-code">/replay/[timestamp]/[url]</b> -- access url archived at timestamp</li>
+                        <li class="fragment"><b class="inline-code">/record/[url]</b> -- record/archive url right now.</li>
+                        <li class="fragment">Urls rewritten from <b class="inline-code">/[url] -> /[prefix]/[url]</b> for both record (write) and replay (read).</li>
+                        <li class="fragment">What about Javascript?</li>
+                    </ul>
+                </section>
+                
+                <section id="urlrewrite2">
+                    <h2>Client Side Rewriting -- Wombat.js</h2>
+                    <ul>
+                        <li class="fragment">Part of the <a href="https://github.com/ikreymer/pywb">pywb web archive replay system.</a></li>
+                        <li class="fragment">Tries hard to make JS think its running at original url.</li>
+                        <li class="fragment">Overrides AJAX calls, attribute accessors, document.write(), many other things.</li>
+                        <li class="fragment"><a href="https://gist.github.com/robertknight/2145c99ed8209ebb1b81#client-side-components">A summary (by a contributor)</a></li>
+                        <li class="fragment"><a href="https://github.com/ikreymer/pywb/blob/master/pywb/static/wombat.js">wombat.js</a></li>
+                        <li class="fragment">Not perfect, but mostly of works, especially in Chrome and FF</li>
+                        <li class="fragment">DEMO WEBRECORDER</li>
+                    </ul>
+                </section>
+                
+                <section id="challenges">
+                    <h2>Challenges Ahead</h2>
+                    <p>Even besides JS, many challenges remain.</p>
+                    <ul>
+                        <li class="fragment">Contextual content -- when date and url is not enough</li>
+                        <li class="fragment">Web application -- client side state can not be archived</li>
+                        <li class="fragment">Websockets</li>
+                        <li class="fragment">HTTP/2</li>
+                    </ul>
+                </section>
+                
+                <section id="bonus">
+                    <h2>Alternative to Url Rewriting</h2>
+                    <ul>
+                        <li class="fragment">HTTP Proxy Mode</li>
+                        <li class="fragment">Requires manual setup from the user, can't link to an archived page.</li>
+                        <li class="fragment">Unless browser running elsewhere, pre-configured.</li>
+                        <li class="fragment">Emulated Browsers connected to web archives via HTTP proxy.</li>
+                        <li class="fragment"><a href="http://oldweb.today/">oldweb.today</a> does this.</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h1>Thank you!</h1>
+                    <h2 class="fragment">Questions?</h2>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
